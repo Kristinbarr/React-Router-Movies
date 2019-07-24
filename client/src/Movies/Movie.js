@@ -11,7 +11,6 @@ const Movie = (props) => {
       axios
         .get(`http://localhost:5000/api/movies/${id}`)
         .then(response => {
-          console.log('movie res', response)
           setMovie(response.data);
         })
         .catch(error => {
@@ -20,10 +19,10 @@ const Movie = (props) => {
   },[]);
 
   // Uncomment this only when you have moved on to the stretch goals
-  // const saveMovie = () => {
-  //   const addToSavedList = props.addToSavedList;
-  //   addToSavedList(movie)
-  // }
+  const saveMovie = () => {
+    const addToSavedList = props.addToSavedList;
+    addToSavedList(movie)
+  }
 
   if (!movie) {
     return <div>Loading movie information...</div>;
@@ -47,7 +46,7 @@ const Movie = (props) => {
           </div>
         ))}
       </div>
-      <div className="save-button">Save</div>
+      <div onClick={saveMovie} className="save-button" >Save</div>
     </div>
   );
 }
